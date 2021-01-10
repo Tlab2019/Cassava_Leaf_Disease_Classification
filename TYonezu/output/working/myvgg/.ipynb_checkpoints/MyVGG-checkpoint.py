@@ -8,7 +8,7 @@ from torch import nn
 class VGG11(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
-
+        
         self.block1_output = nn.Sequential (
             nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, padding=1),
             nn.ReLU(inplace=True),
