@@ -17,6 +17,7 @@ class ImageTransform():
                 transforms.RandomVerticalFlip(),
                 transforms.RandomResizedCrop(resize),
                 transforms.RandomRotation(degrees=(-180,180)),
+                transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5),
                 transforms.ToTensor(),
                 transforms.Normalize(mean, std)
             ]),
