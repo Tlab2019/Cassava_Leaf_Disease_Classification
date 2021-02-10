@@ -1,1 +1,1 @@
-from .my_nn_module import *
+from .my_nn_trainer import *
