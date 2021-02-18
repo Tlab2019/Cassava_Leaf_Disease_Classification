@@ -23,7 +23,9 @@ def run_training(model,optimizer,criterion,epoch_num,
 
     scaler = torch.cuda.amp.GradScaler()
     torch.backends.cudnn.benchmark = True
-    for epoch in tqdm(range(epoch_num)):
+    
+    pbar = tqdm(total=epoch_num)
+    for epoch in range(epoch_num):
         
         print("===========================================")
         print("epoch: ",epoch,"\n")
@@ -110,5 +112,10 @@ def run_training(model,optimizer,criterion,epoch_num,
             fig.suptitle(MODEL_NAME+"-epoch%d"%epoch)
             plt.savefig(MODEL_NAME+".jpg",format="jpg")
             plt.show()
-            
+        
+        # update progress bar
+        pbar.update(1)
+    
+    pbar.close()
+    
     return pd.DataFrame.from_dict(log,orient="index",columns=["train acc","train loss","valid acc","valid loss"])
